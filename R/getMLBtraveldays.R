@@ -221,15 +221,18 @@ getMLBtraveldays <- function(day1,day2){
 
   todaygames <- left_join(todaygames,venuegps)
 
-  todaygames$homedist <- sapply(c(1:nrow(todaygames)),FUN=function(x){geosphere::distHaversine(p1=c(todaygames$lon_home[x],todaygames$lat_home[x]),p2=c(todaygames$lon[x],todaygames$lat[x]))})
-  todaygames$awaydist <- sapply(c(1:nrow(todaygames)),FUN=function(x){geosphere::distHaversine(p1=c(todaygames$lon_away[x],todaygames$lat_away[x]),p2=c(todaygames$lon[x],todaygames$lat[x]))})
+  todaygames$homedistkm <- sapply(c(1:nrow(todaygames)),FUN=function(x){geosphere::distHaversine(p1=c(todaygames$lon_home[x],todaygames$lat_home[x]),p2=c(todaygames$lon[x],todaygames$lat[x]))})
+  todaygames$homedistkm <- todaygames$homedistkm/1000
+  todaygames$awaydistkm <- sapply(c(1:nrow(todaygames)),FUN=function(x){geosphere::distHaversine(p1=c(todaygames$lon_away[x],todaygames$lat_away[x]),p2=c(todaygames$lon[x],todaygames$lat[x]))})
+  todaygames$awaydistkm <- todaygames$awaydistkm/1000
+
   todaygames$timeutc_lastplay_away <- ymd_hms(todaygames$timeutc_lastplay_away)
   todaygames$traveltime_away <- difftime( todaygames$datetime, todaygames$timeutc_lastplay_away, units="hours")
-  todaygames$travelkph_away <- (todaygames$awaydist/1000)/as.numeric(todaygames$traveltime_away)
+  todaygames$travelkph_away <- (todaygames$awaydistkm)/as.numeric(todaygames$traveltime_away)
 
   todaygames$timeutc_lastplay_home <- ymd_hms(todaygames$timeutc_lastplay_home)
   todaygames$traveltime_home <- difftime( todaygames$datetime, todaygames$timeutc_lastplay_home, units="hours")
-  todaygames$travelkph_home <- (todaygames$homedist/1000)/as.numeric(todaygames$traveltime_home)
+  todaygames$travelkph_home <- (todaygames$homedistkm)/as.numeric(todaygames$traveltime_home)
 
   return(todaygames)
 }

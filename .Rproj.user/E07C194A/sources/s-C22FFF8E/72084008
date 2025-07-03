@@ -3,7 +3,7 @@
     "path": "~/Desktop/MLBTRAVEL/R/getMLBtraveldays.R",
     "project_path": "R/getMLBtraveldays.R",
     "type": "r_source",
-    "hash": "0",
+    "hash": "3511684535",
     "contents": "",
     "dirty": false,
     "created": 1751548927143.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "29,8",
+        "cursorPosition": "5,16",
         "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1751550120,
+    "lastKnownWriteTime": 1751554336,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1751550120125,
+    "last_content_update": 1751554336858,
     "read_only": false,
     "read_only_alternatives": []
 }
