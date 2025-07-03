@@ -26,8 +26,8 @@ getMLBtraveldays <- function(day1,day2){
     return(paste0(year,month,day))
   }
 
-  day1 <- gfd_ymd(year=year(day1),month=month(day1),day=day(day1))
-  day2 <- gfd_ymd(year=year(day2),month=month(day2),day=day(day2))
+  dyesterday <- gfd_ymd(year=year(day1),month=month(day1),day=day(day1))
+  dtoday <- gfd_ymd(year=year(day2),month=month(day2),day=day(day2))
 
 
   ###########################################################################################
