@@ -18,5 +18,5 @@ Using ```getMLBtravel``` or ```getMLBtraveldays```:
 
 ```getMLBtravel(example=TRUE)``` will do travel between 06/29/2025 and 06/30/2025, which is a good example of a day with a lot of travel in the MLB
 
-```getMLBtraveldays(day1=Sys.Date()-3, day2=Sys.Date()-2)``` will compare any two consecutive dates up to day2=today. In the example here it is calculating travel times from games 3 days ago to games 2 days ago. ```day1``` and ```day2``` variables MUST BE CONSECUTIVE DAYS!
+```getMLBtraveldays(day1=Sys.Date()-4, day2=Sys.Date()-3)``` will compare any two consecutive dates up to day2=today. In the example here it is calculating travel times from games 4 days ago to games 3 days ago. ```day1``` and ```day2``` variables MUST BE CONSECUTIVE DAYS!
 
