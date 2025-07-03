@@ -3,8 +3,7 @@ Type: Package
 Title: Calculate MLB travel
 Version: 0.1.0
 Author: Neal Barsch
-Maintainer: neal@tenfourwest.com
-Description: Do MLB travel calculations for travel between games
+Description: Do MLB travel calculations for travel between
 License: NA 
 Encoding: UTF-8
 LazyData: true
