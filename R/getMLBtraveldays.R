@@ -96,8 +96,9 @@ getMLBtraveldays <- function(day1,day2){
 
   #get venue gps coordinates and team lookup index
   ########################################################################################
-
-  download.file("https://docs.google.com/spreadsheets/d/1p0R5qqR7XjoRG2mR5E1D_trlygHSqMOUdMgMpzq0gjU/gviz/tq?tqx=out:csv",destfile="temp_allvenuegps.csv")
+  if(!file.exists("temp_allvenuegps.csv")){
+    download.file("https://docs.google.com/spreadsheets/d/1p0R5qqR7XjoRG2mR5E1D_trlygHSqMOUdMgMpzq0gjU/gviz/tq?tqx=out:csv",destfile="temp_allvenuegps.csv")
+  }
   agps <- fread("temp_allvenuegps.csv")
   agps <- agps[agps$Sport=="MLB",]
   names(agps)[3]<- "Team"
