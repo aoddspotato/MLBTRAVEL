@@ -141,20 +141,23 @@ getMLBtraveldays <- function(day1,day2){
         tgame <- system(paste0("curl http://site.api.espn.com/apis/site/v2/sports/baseball/mlb/summary?event=",tleague$events$id[x]," --compressed"),intern=T)
         tga <- fromJSON(tgame)
         if(tga$meta$gameState=="post"){
-          ltime <- tga$meta$lastPlayWallClock
-          tdz <- data.frame(teamslug_home=team1, timeutc_lastplay=ltime, stringsAsFactors = F)
-          tdzz <- left_join(tdz, venuegps)
-          tdzz$league <- league
-          names(tdzz)[1]<-"teamslug"
-          ylist[[length(ylist)+1]]<- tdzz
+          tryCatch({
+            ltime <- tga$meta$lastPlayWallClock
+            tdz <- data.frame(teamslug_home=team1, timeutc_lastplay=ltime, stringsAsFactors = F)
+            tdzz <- left_join(tdz, venuegps)
+            tdzz$league <- league
+            names(tdzz)[1]<-"teamslug"
+            ylist[[length(ylist)+1]]<- tdzz
 
-          eteam2 <- opmlbteamlook(teamname=teams[2],league=league)
-          team2 <- eteam2$slug[1]
-          tdaw <- data.frame(teamslug=team2, timeutc_lastplay=ltime, stringsAsFactors = F)
-          tdaw$lat <- tdzz$lat
-          tdaw$lon <- tdzz$lon
-          tdaw$league <- league
-          ylist[[length(ylist)+1]]<- tdaw
+            eteam2 <- opmlbteamlook(teamname=teams[2],league=league)
+            team2 <- eteam2$slug[1]
+            tdaw <- data.frame(teamslug=team2, timeutc_lastplay=ltime, stringsAsFactors = F)
+            tdaw$lat <- tdzz$lat
+            tdaw$lon <- tdzz$lon
+            tdaw$league <- league
+            ylist[[length(ylist)+1]]<- tdaw
+          },error=function(e){})
+
         }
       }
     }
