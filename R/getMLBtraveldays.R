@@ -62,6 +62,9 @@ getMLBtraveldays <- function(day1,day2){
   if(!file.exists("temp_mlbmasterteams.csv")){
     download.file("https://docs.google.com/spreadsheets/d/1E01ih5p5YGDP7_UfK6iFkq61OUQBOj1hm_hwpKlBjCc/gviz/tq?tqx=out:csv&sheet=mlb_masterteams",destfile="temp_mlbmasterteams.csv")
     masterdan <- fread("temp_mlbmasterteams.csv")
+  }else{
+    masterdan <- fread("temp_mlbmasterteams.csv")
+
   }
 
 
