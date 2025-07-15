@@ -136,9 +136,9 @@ getMLBtraveldays <- function(day1,day2){
 
   tleague$events$mlbhour <- 13
 
-  tleague$events$mlbhour[tleague$events$mtnhour<13] <- 10
-  tleague$events$mlbhour[tleague$events$mtnhour>12 & tleague$events$mtnhour<18] <- 13
-  tleague$events$mlbhour[tleague$events$mtnhour>17] <- 20
+  tleague$events$mlbhour[tleague$events$mtnhour<11] <- 10
+  tleague$events$mlbhour[tleague$events$mtnhour>10 & tleague$events$mtnhour<16] <- 13
+  tleague$events$mlbhour[tleague$events$mtnhour>15] <- 20
 
 
   if(length(tleague$events)>0){
@@ -154,6 +154,11 @@ getMLBtraveldays <- function(day1,day2){
         if(tga$meta$gameState=="post"){
           tryCatch({
             ltime <- tga$meta$lastPlayWallClock
+            if(is.null(ltime)){
+              lvec <- tga[["plays"]][["wallclock"]]
+              lvec <- lvec[!is.na(lvec)]
+              ltime <- lvec[length(lvec)]
+            }
             tdz <- data.frame(teamslug_home=team1, timeutc_lastplay=ltime, stringsAsFactors = F)
             tdzz <- left_join(tdz, venuegps)
             tdzz$league <- league
@@ -199,9 +204,9 @@ getMLBtraveldays <- function(day1,day2){
   #tleague$events$mlbhour[tleague$events$mtnhour>15]<-20
   tleague$events$mlbhour <- 13
 
-  tleague$events$mlbhour[tleague$events$mtnhour<13] <- 10
-  tleague$events$mlbhour[tleague$events$mtnhour>12 & tleague$events$mtnhour<18] <- 13
-  tleague$events$mlbhour[tleague$events$mtnhour>17] <- 20
+  tleague$events$mlbhour[tleague$events$mtnhour<11] <- 10
+  tleague$events$mlbhour[tleague$events$mtnhour>10 & tleague$events$mtnhour<16] <- 13
+  tleague$events$mlbhour[tleague$events$mtnhour>15] <- 20
 
   if(length(tleague$events)>0){
     if(!is.null(nrow(tleague$events))){
