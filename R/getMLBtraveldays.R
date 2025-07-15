@@ -128,9 +128,15 @@ getMLBtraveldays <- function(day1,day2){
   tleague$events$datetimeutc2 <- ymd_hm(tleague$events$datetimeutc)
   tleague$events$mtntime <- mtn_ts(tleague$events$datetimeutc2)
   tleague$events$mtnhour <- hour(tleague$events$mtntime)
+  #tleague$events$mlbhour <- 13
+  #tleague$events$mlbhour[tleague$events$mtnhour<11]<-10
+  #tleague$events$mlbhour[tleague$events$mtnhour>15]<-20
+
   tleague$events$mlbhour <- 13
-  tleague$events$mlbhour[tleague$events$mtnhour<11]<-10
-  tleague$events$mlbhour[tleague$events$mtnhour>15]<-20
+
+  tleague$events$mlbhour[tleague$events$mtnhour<13] <- 10
+  tleague$events$mlbhour[tleague$events$mtnhour>12 & tleague$events$mtnhour<18] <- 13
+  tleague$events$mlbhour[tleague$events$mtnhour>17] <- 20
 
 
   if(length(tleague$events)>0){
@@ -187,10 +193,13 @@ getMLBtraveldays <- function(day1,day2){
   tleague$events$datetimeutc2 <- ymd_hm(tleague$events$datetimeutc)
   tleague$events$mtntime <- mtn_ts(tleague$events$datetimeutc2)
   tleague$events$mtnhour <- hour(tleague$events$mtntime)
+  #tleague$events$mlbhour[tleague$events$mtnhour<11]<-10
+  #tleague$events$mlbhour[tleague$events$mtnhour>15]<-20
   tleague$events$mlbhour <- 13
-  tleague$events$mlbhour[tleague$events$mtnhour<11]<-10
-  tleague$events$mlbhour[tleague$events$mtnhour>15]<-20
 
+  tleague$events$mlbhour[tleague$events$mtnhour<13] <- 10
+  tleague$events$mlbhour[tleague$events$mtnhour>12 & tleague$events$mtnhour<18] <- 13
+  tleague$events$mlbhour[tleague$events$mtnhour>17] <- 20
 
   if(length(tleague$events)>0){
     if(!is.null(nrow(tleague$events))){
